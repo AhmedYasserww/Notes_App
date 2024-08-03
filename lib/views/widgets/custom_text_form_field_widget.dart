@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/constants.dart';
 class CustomTextField extends StatelessWidget {
-   CustomTextField({super.key,required this.hintText,this.contentPadding,this.maxLine=1});
-   double ? contentPadding;
+   const CustomTextField({super.key,required this.hintText, this.maxLine=1});
+
   final  String  hintText;
-   int  maxLine;
+   final int  maxLine;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,6 @@ class CustomTextField extends StatelessWidget {
       enabledBorder: buildBorder(),
            focusedBorder: buildBorder(kPrimaryColor),
 
-           contentPadding:   EdgeInsets.symmetric(vertical:contentPadding??20,horizontal: 20 ),
           )
       );
 
@@ -28,7 +27,7 @@ class CustomTextField extends StatelessWidget {
    OutlineInputBorder buildBorder([color]){
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(color: color ?? Colors.white,width: 1.3),
+      borderSide: BorderSide(color: color ?? Colors.white,width: 1.2),
     );
    }
 }
