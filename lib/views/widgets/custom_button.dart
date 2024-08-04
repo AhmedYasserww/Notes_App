@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/constants.dart';
 class CustomButton extends StatelessWidget {
-   CustomButton({super.key,required this.text});
+   CustomButton({super.key,required this.text,this.onTap});
 String  text;
+   void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,7 +15,7 @@ String  text;
       alignment: Alignment.center,
       width:MediaQuery.of(context).size.width,
       child: GestureDetector(
-        onTap: () {},
+        onTap: onTap,
         child: Text(
           text,
           style: const TextStyle(fontSize: 22, color: Colors.black,fontWeight: FontWeight.bold),
