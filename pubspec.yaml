@@ -31,6 +31,8 @@ dependencies:
   font_awesome_flutter: ^10.7.0
   hive:
   hive_flutter:
+  dio: ^5.5.0+1
+  flutter_bloc: ^8.1.6
 
   flutter:
     sdk: flutter
