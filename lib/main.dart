@@ -8,34 +8,35 @@ import 'package:note_app/views/notes_view.dart';
 import 'constants.dart';
 
 void main() async {
+  //WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
-  await Hive.initFlutter();
-  await Hive.openBox(kNotesBox);
-   Hive.registerAdapter(NoteModelAdapter());
-  runApp(const NotesApp());
 
+  await Hive.initFlutter();
+
+  Hive.registerAdapter(NoteModelAdapter());
+
+  var box = await Hive.openBox<NoteModel>(kNotesBox);
+ // await box.clear();  // This will clear all existing data
+
+  runApp(const NotesApp());
 }
+
 
 class NotesApp extends StatelessWidget {
   const NotesApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return  MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context)=>AddNoteCubit()),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-      //ممكن كده وممكن حاجه تانيه
-        //theme: ThemeData.dark(),
-        theme: ThemeData(
-          brightness:Brightness.dark,
-          fontFamily: "Poppins"
-
-        ),
-        home:const NotesView()
+    return  MaterialApp(
+      debugShowCheckedModeBanner: false,
+    //ممكن كده وممكن حاجه تانيه
+      //theme: ThemeData.dark(),
+      theme: ThemeData(
+        brightness:Brightness.dark,
+        fontFamily: "Poppins"
 
       ),
+      home:const NotesView()
+
     );
   }
 }

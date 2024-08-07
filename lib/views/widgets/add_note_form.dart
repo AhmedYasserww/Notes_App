@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:note_app/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:note_app/models/note_model.dart';
 import 'package:note_app/views/widgets/custom_button.dart';
 import 'package:note_app/views/widgets/custom_text_form_field_widget.dart';
 class AddNoteForm extends StatefulWidget {
@@ -9,12 +12,10 @@ class AddNoteForm extends StatefulWidget {
 }
 
 class _AddNoteFormState extends State<AddNoteForm> {
-  final GlobalKey <FormState> formKey = GlobalKey();
-  //ده بستخدمه علشان اظهرله لو هوا دخل انبوت غلط فى عمليه الفالديشن يعنى مثلا فى حاله الايميل لازم يدخل @ وكده
+  final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
-  //طالما هعمل استرنج نالبول يبقى لازم يكون جوه state ful widget
-  //انما جوه الstate less widget لازم تكون field
-  String ? title  , content;
+  String? title, content;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -26,17 +27,16 @@ class _AddNoteFormState extends State<AddNoteForm> {
             height: 32,
           ),
           CustomTextField(
-            onSaved:(value){
+            onSaved: (value) {
               title = value;
             },
-
             hintText: "Title",
           ),
           const SizedBox(
             height: 16,
           ),
           CustomTextField(
-            onSaved: (value){
+            onSaved: (value) {
               content = value;
             },
             hintText: "Content",
@@ -45,22 +45,29 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 32,
           ),
+      CustomButton(
+        onTap: () {
+          print ("before");
+          if (formKey.currentState!.validate()) {
+            formKey.currentState!.save();
+            print('Title: $title, Content: $content');
+            var noteModel = NoteModel(
+              title: title!,
+              content: content!,
+              date: DateTime.now().toString(),
+              color: Colors.cyan.value,
+            );
+            BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+          } else {
+            setState(() {
+              autoValidateMode = AutovalidateMode.always;
+            });
+          }
+        },
+        text: "Add",
+      ),
 
-          CustomButton(
-              onTap: (){
-                //لازم اعمل validate
-                if(formKey.currentState!.validate()){
-                  formKey.currentState!.save();
-                }
-                else{
-                  autoValidateMode = AutovalidateMode.always;
-                }
-                setState(() {
-
-                });
-              },
-              text: "Add"),
-          const SizedBox(
+      const SizedBox(
             height: 16,
           ),
         ],
@@ -68,4 +75,3 @@ class _AddNoteFormState extends State<AddNoteForm> {
     );
   }
 }
-
