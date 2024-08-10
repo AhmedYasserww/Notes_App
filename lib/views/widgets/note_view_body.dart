@@ -10,40 +10,37 @@ class NoteViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  BlocProvider(
-      create: (context) => NotesCubit()..fetchAllNotes(),
-      child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.cyan,
-          shape:const CircleBorder(),
-          onPressed: () {
-            showModalBottomSheet(
-             isScrollControlled: true,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16)
-              ),
-                context: context, builder:(context)
-            {
-              return const AddNoteBottomSheet();
-            });
-          },
-          child: const Icon(
-            Icons.add,
-            color: Colors.black,
-          ),
-
+    return  Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.cyan,
+        shape:const CircleBorder(),
+        onPressed: () {
+          showModalBottomSheet(
+           isScrollControlled: true,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16)
+            ),
+              context: context, builder:(context)
+          {
+            return const AddNoteBottomSheet();
+          });
+        },
+        child: const Icon(
+          Icons.add,
+          color: Colors.black,
         ),
-        body: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            children: [
-               SizedBox(height: 10,),
-             CustomAppbar(text: "Notes",icon:FontAwesomeIcons.magnifyingGlass,),
-             // SizedBox(height: 16,),
-              Expanded(child: NotesListView())
 
-            ],
-          ),
+      ),
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+             SizedBox(height: 16,),
+           CustomAppbar(text: "Notes",icon:FontAwesomeIcons.magnifyingGlass,),
+           // SizedBox(height: 16,),
+            Expanded(child: NotesListView())
+
+          ],
         ),
       ),
     );

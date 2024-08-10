@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:note_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:note_app/models/note_model.dart';
 import 'package:note_app/views/edit_note_view.dart';
 
 import 'Alert_dialog_de;eting.dart';
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key,required this.noteModel});
+  const  NoteItem({super.key,required this.noteModel});
 final NoteModel noteModel;
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ final NoteModel noteModel;
           }));
         },
         child: Container(
-          padding: EdgeInsets.only(left: 16,top: 24,bottom: 24),
+          padding: const EdgeInsets.only(left: 16,top: 24,bottom: 24),
           color: Color(noteModel.color),
 
           child: Column(
@@ -39,7 +41,7 @@ final NoteModel noteModel;
                 ),
                 textColor: Colors.black,
                 trailing: IconButton(onPressed:(){
-                  showDeleteConfirmationDialog(context,noteModel);
+                  showDeleteConfirmationDialog(context, noteModel);
                 }, icon:const Icon(FontAwesomeIcons.trash,color: Colors.black,size: 30,),)
 
               ),
