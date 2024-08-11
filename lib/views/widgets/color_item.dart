@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 class ColorItem extends StatelessWidget {
-  const ColorItem({super.key});
-
+  const ColorItem({super.key,required this.isActive,required this.color});
+final bool isActive;
+final Color color;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(right: 12),
-      child: const CircleAvatar(
-        radius: 40,
-        backgroundColor: Colors.cyan,
-      ),
+    return isActive ? CircleAvatar(
+      radius: 44,
+      backgroundColor: Colors.white,
+      child: CircleAvatar(
+        radius: 36,
+        backgroundColor: color),
+    ):
+        CircleAvatar(
+        radius: 36,
+        backgroundColor: color
     );
   }
 }
