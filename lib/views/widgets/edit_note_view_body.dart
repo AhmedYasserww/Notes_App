@@ -7,6 +7,7 @@ import 'package:note_app/views/widgets/custom_text_form_field_widget.dart';
 import 'package:note_app/views/widgets/custum_appbar.dart';
 
 import '../../constants.dart';
+import '../../cubits/functions.dart';
 
 class EditNoteViewBody extends StatefulWidget {
   const EditNoteViewBody({super.key, required this.note});
@@ -37,6 +38,8 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
                 widget.note.save();
                 BlocProvider.of<NotesCubit>(context).fetchAllNotes();
                 Navigator.pop(context);
+
+                showActionMessage(context, "Note Edited successfully");
               },
               text: "Edit Notes",
               icon: Icons.check,

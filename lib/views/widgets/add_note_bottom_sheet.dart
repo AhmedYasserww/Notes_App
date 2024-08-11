@@ -5,6 +5,8 @@ import 'package:note_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:note_app/views/widgets/add_note_form.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
+import '../../cubits/functions.dart';
+
 class AddNoteBottomSheet extends StatelessWidget {
   const AddNoteBottomSheet({super.key});
 
@@ -23,6 +25,8 @@ class AddNoteBottomSheet extends StatelessWidget {
               print('Note added successfully, closing bottom sheet.');
               BlocProvider.of<NotesCubit>(context).fetchAllNotes();
               Navigator.pop(context);
+              showActionMessage(context, "Note Added successfully");
+
             }
           },
           builder: (context, state) {
