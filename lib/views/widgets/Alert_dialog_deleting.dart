@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/cubits/notes_cubit/notes_cubit.dart';
 
+import '../../cubits/functions.dart';
 import '../../models/note_model.dart';
 
 showDeleteConfirmationDialog(BuildContext context, NoteModel noteModel) {
@@ -26,12 +27,7 @@ showDeleteConfirmationDialog(BuildContext context, NoteModel noteModel) {
               Navigator.of(context).pop();
 
               // Show success message
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("Note deleted successfully",style: TextStyle(fontSize: 18,color:Colors.black),),
-                  duration: Duration(seconds: 2),
-                ),
-              );
+              showActionMessage(context, "Note Deleted successfully");
             },
           ),
         ],
