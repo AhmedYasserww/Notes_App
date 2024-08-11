@@ -2,17 +2,19 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/constants.dart';
 class CustomTextField extends StatelessWidget {
-   const CustomTextField({super.key,required this.hintText, this.maxLine=1,this.onSaved});
+   const CustomTextField({super.key,required this.hintText, this.maxLine=1,this.onSaved,this.onChange});
 
   final  String  hintText;
    final int  maxLine;
    final void Function(String?)? onSaved;
+   final void Function(String?)? onChange;
 
   @override
   Widget build(BuildContext context) {
 
       return TextFormField(
         onSaved:onSaved ,
+        onChanged: onChange,
         validator: (value){
           //ترو دى معناها ان هوا فعلا بnull
           if(value?.isEmpty ?? true){

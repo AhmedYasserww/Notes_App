@@ -10,7 +10,7 @@ showDeleteConfirmationDialog(BuildContext context, NoteModel noteModel) {
     builder: (BuildContext context) {
       return AlertDialog(
         title: const Text("Delete Note"),
-        content: const Text("Are you sure you want to delete this note?"),
+        content: const Text("Are you sure you want to delete this note?",style:TextStyle(fontSize: 18),),
         actions: <Widget>[
           TextButton(
             child: const Text("Cancel"),
@@ -28,7 +28,7 @@ showDeleteConfirmationDialog(BuildContext context, NoteModel noteModel) {
               // Show success message
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text("Note deleted successfully",style: TextStyle(fontSize: 16),),
+                  content: Text("Note deleted successfully",style: TextStyle(fontSize: 18,color:Colors.black),),
                   duration: Duration(seconds: 2),
                 ),
               );

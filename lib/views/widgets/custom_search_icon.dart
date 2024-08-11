@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class CustomSearchIcon extends StatelessWidget {
-  const CustomSearchIcon({super.key,required this.icon});
+  const CustomSearchIcon({super.key,required this.icon,this.onTap});
   final IconData icon ;
+ final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class CustomSearchIcon extends StatelessWidget {
           height: 45,
           width: 45,
           child: IconButton(
-              onPressed: () {},
+              onPressed:onTap,
               icon:  Icon(icon)),
         ));
   }

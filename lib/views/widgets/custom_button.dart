@@ -13,22 +13,24 @@ String  text;
       child: Container(
         height: 45,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: kPrimaryColor
-        ),
+            borderRadius: BorderRadius.circular(8), color: kPrimaryColor),
         alignment: Alignment.center,
-        width:MediaQuery.of(context).size.width,
-        child: isLoading ? SizedBox(
-          height: 28,
-          width: 28,
-          child: const CircularProgressIndicator(
-            color: Colors.black,
-
-          ),
-        ) : Text(
-          text,
-          style: const TextStyle(fontSize: 22, color: Colors.black,fontWeight: FontWeight.bold),
-        ),
+        width: MediaQuery.of(context).size.width,
+        child: isLoading
+            ? const SizedBox(
+                height: 28,
+                width: 28,
+                child:  CircularProgressIndicator(
+                  color: Colors.black,
+                ),
+              )
+            : Text(
+                text,
+                style: const TextStyle(
+                    fontSize: 22,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
       ),
     );
   }
